@@ -1,15 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "🚀 Ejecutando pruebas automatizadas antes del push..."
+echo "Ejecutando pruebas automatizadas antes del push..."
 
 # Ejecutar pruebas
 npm test
-
-# Verificar resultado
-if [ $? -ne 0 ]; then
-  echo "Oh no, parece ser que no se lograron pasar todas las pruebas automatizadas, revisa tus modificaciones realizadas"
-  exit 1
-else
-  echo "La prueba de regresión fue ejecutada exitosamente"
-fi
