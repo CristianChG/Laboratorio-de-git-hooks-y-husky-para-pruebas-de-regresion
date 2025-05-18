@@ -1,7 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "Ejecutando pruebas automatizadas antes del push..."
+echo "Ejecutando pruebas automáticas antes del push..."
 
 # Ejecutar pruebas
 npm test
