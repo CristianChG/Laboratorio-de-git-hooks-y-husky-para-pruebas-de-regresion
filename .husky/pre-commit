@@ -1,0 +1,12 @@
+# .husky/pre-commit
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Obtener la rama actual
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+# Bloquear commits directos a main y develop
+if [ "$current_branch" = "main" ] || [ "$current_branch" = "develop" ]; then
+  echo "No puedes realizar commits en '$current_branch'. Crea una nueva rama para tus cambios."
+  exit 1
+fi
