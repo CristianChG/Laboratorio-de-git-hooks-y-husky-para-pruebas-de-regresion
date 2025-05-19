@@ -1,0 +1,12 @@
+# .husky/commit-msg
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+msg="$(head -n1 "$1")"
+
+# Validar que el mensaje inicie con uno de los tipos permitidos
+# type ∈ {feat, fix, refactor, style, docs, chore, test}
+if ! echo "$msg" | grep -Eq '^(feat|fix|refactor|style|docs|chore|test)\b'; then
+  echo "Mensaje de commit inválido: debe iniciar con uno de los siguientes tipos: feat, fix, refactor, style, docs, chore, test"
+  exit 1
+fi
