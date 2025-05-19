@@ -5,6 +5,13 @@
 # Obtener la rama actual
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 
+# Validar que la rama inicie con uno de los tipos permitidos
+if ! echo "$current_branch" | grep -Eq '^(feature|bugfix|hotfix|release|docs|test)/'; then
+  echo "El nombre de la rama '$current_branch' no cumple el estándar."
+  echo "Debe comenzar con: feature/, bugfix/, hotfix/, release/, docs/ o test/"
+  exit 1
+fi
+
 # Bloquear pushes directos a main y develop
 if [ "$current_branch" = "main" ] || [ "$current_branch" = "develop" ]; then
   echo "No puedes realizar push en '$current_branch'. Crea una nueva rama y utiliza Pull Requests para cambios en main o develop."
